@@ -75,6 +75,66 @@ Sub MergeCellByRow()
     Next
 End Sub
 
+Sub MonthStrReplace()
+    Set selectionArea = Selection()
+    Dim Month As Integer
+
+    Month = InputBox("月", Default:=-1)
+    If Month <> -1 Then
+        For Each singleCell In selectionArea
+            singleCell.Value = Replace(singleCell.Value, "M", Month)
+        Next
+    End If
+End Sub
+
+Sub StrReplace()
+    Set selectionArea = Selection()
+    Dim Front As String, Back As String
+
+    Front = "A"
+    Back = "B"
+    For Each singleCell In selectionArea
+        singleCell.Value = Replace(singleCell.Value, Front, Back)
+    Next
+    
+End Sub
+
+Sub SelectBeginColumn()
+    Set selectionArea = Selection()
+    Set firstCell = selectionArea(1)
+    Dim Col As Integer, Row As Integer
+
+    Col = firstCell.Column
+    Row = 1
+    Cells(Row, Col).Select
+
+End Sub
+
+Sub SelectRowInSelectedColumn()
+    Set selectionArea = Selection()
+    Set firstCell = selectionArea(1)
+    Dim Col As Integer, Row As Integer
+    Col = firstCell.Column
+    Row = InputBox("行", Default:=1)
+    Cells(Row, Col).Select
+    
+End Sub
+
+Sub selectLastColumn()
+    Set selectionArea = Selection()
+    Set firstCell = selectionArea(1)
+    Dim Col As Integer, Row As Integer
+    Col = firstCell.Column
+    Row = Cells(Rows.Count, 1).End(xlUp).Row
+    Cells(Row, Col).Select()
+    
+End Sub
+
+
+
+
+
+
 Sub count_yellow()
     Set selectionArea = Selection()
     Dim cell_count As Integer
